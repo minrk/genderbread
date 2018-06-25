@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<!-- minor modifications to http://webaffair.net/genderbread/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf8">
+<title>Interactive Genderbread</title>
+<style>
+body {font-size: 24px; font-family: "vag-handwrittenregular";}
+h1 {float:left; line-height: 80px; margin: 0 15px;}
+#genderbread {float: left; margin: 0 25px 0 15px;}
+input {width: 180px;}
+fieldset {border: 0; padding-bottom: 25px;}
+legend {height: 34px; padding-left: 50px; font-size: 1.5em; white-space: nowrap; font-weight: bold;}
+
+span {
+	display: inline-block; 
+	padding: 0 21px;
+	height: 25px; width: 200px;
+}
+legend span {
+	min-width: 60px; width: auto; height: auto;
+	background-image: none !important; 
+	font-size: 0.8em;
+	color: black;
+	padding: 0 20px; 
+	border-radius: 10px;
+	font-weight: normal;
+}
+
+#Identity legend {color: #5aa6d7; background: url(icons.png) left top no-repeat; line-height: 34px;}
+#Identity legend span {background-color: #5aa6d7; }
+#Identity span {background: url(sliders.png) left top no-repeat; }
+#Expression legend {color: #e1b820; background: url(icons.png) left -34px no-repeat; height: 40px;}
+#Expression legend span {background-color: #e1b820; }
+#Expression span {background: url(sliders.png) left -25px no-repeat; }
+#Biological legend {color: #ab559e; background: url(icons.png) left -74px no-repeat; height: 44px;}
+#Biological legend span {background-color: #ab559e; }
+#Biological span {background: url(sliders.png) left -50px no-repeat; }
+#Attraction legend {color: #f35c27; background: url(icons.png) left -118px no-repeat; line-height: 34px;}
+#Attraction legend span {background-color: #f35c27; }
+#Attraction span {background: url(sliders.png) left -75px no-repeat; }
+#Romance legend {color: #f35c27; background: url(icons.png) left -118px no-repeat; line-height: 34px;}
+#Romance legend span {background-color: #f35c27; }
+#Romance span {background: url(sliders.png) left -75px no-repeat; }
+
+
+
+/*input[type='range']{
+    background: background: url(sliders.png) no-repeat;
+    height:10px;
+}
+
+input[type='range']::-webkit-slider-thumb{
+    background:#f60;
+    height:30px;
+    width:30px;
+    border-radius: 30px;
+}*/
+
+
+@font-face {
+    font-family: 'vag-handwrittenregular';
+    src: url('fonts/vag-handwritten-webfont.eot');
+    src: url('fonts/vag-handwritten-webfont.eot?#iefix') format('embedded-opentype'),
+         url('fonts/vag-handwritten-webfont.woff') format('woff'),
+         url('fonts/vag-handwritten-webfont.ttf') format('truetype'),
+         url('fonts/vag-handwritten-webfont.svg#vag-handwrittenregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+</style>
+<style type="text/css"></style></head>
+
+<body>
+<h1>The Interactive Genderbread Person</h1>
+<img id="logo" src="./genderbread_files/metrosexual_logo.jpg" alt="by It&#39;s Pronounced Metrosexual .com">
+<img id="genderbread" src="./genderbread_files/Genderbread.jpg">
+<form>
+<fieldset id="Identity">
+	<legend>Gender Identity <span id="Ident-Label" contentEditable="true" onblur="checkIdentity();">Man</span></legend>
+	<span><input type="range" name="Ident-F" id="Ident-F" min="1" max="100" value="50" onchange="AdjustIdentity();"></span>
+	<label for="Ident-F">Woman-ness</label><br>
+	<span><input type="range" name="Ident-M" id="Ident-M" min="1" max="100" value="10" onchange="AdjustIdentity();"></span>
+	<label for="Ident-M">Man-ness</label>
+</fieldset>
+
+<fieldset id="Expression">
+	<legend>Gender Expression <span id="Expr-Label" contentEditable="true" onblur="checkExpression();">Hypemasculine</span></legend>
+	<span><input type="range" name="Expr-F" id="Expr-F" min="1" max="100" value="50" onchange="AdjustExpression();"></span>
+	<label for="Expr-F">Femininity</label><br>
+	<span><input type="range" name="Expr-M" id="Expr-M" min="1" max="100" value="10" onchange="AdjustExpression();"></span>
+	<label for="Expr-M">Masculinity</label>
+</fieldset>
+
+<fieldset id="Biological">
+	<legend>Biological Sex <span id="Bio-Label" contentEditable="true" onblur="checkSex();">Assumed Female</span></legend>
+	<span><input type="range" name="Bio-F" id="Bio-F" min="1" max="100" value="50" onchange="AdjustSex();"></span>
+	<label for="Bio-F">Female-ness</label><br>
+	<span><input type="range" name="Bio-M" id="Bio-M" min="1" max="100" value="10" onchange="AdjustSex();"></span>
+	<label for="Bio-M">Males-ness</label>
+</fieldset>
+
+<fieldset id="Attraction">
+	<legend>Sexual Attraction <span id="Attr-Label" contentEditable="true" onblur="checkAttraction();">Mostly Skoliosexual</span></legend>
+	<span><input type="range" name="Attr-F" id="Attr-F" min="1" max="100" value="50" onchange="AdjustAttraction();"></span>
+	<label for="Attr-F">Women/Females/Femininity</label><br>
+	<span><input type="range" name="Attr-M" id="Attr-M" min="1" max="100" value="10" onchange="AdjustAttraction();"></span>
+	<label for="Attr-M">Men/Males/Masculinity</label><br>
+	<span><input type="range" name="Attr-O" id="Attr-O" min="1" max="100" value="10" onchange="AdjustAttraction();"></span>
+	<label for="Attr-O">Non-Binary</label>
+	
+</fieldset>
+
+<fieldset id="Romance">
+	<legend>Romantic Attraction <span id="Rom-Label" contentEditable="true" oninput="checkRomance();"></span></legend>
+	<span><input type="range" name="Rom-F" id="Rom-F" min="1" max="100" value="50" onchange="AdjustRomance();"></span>
+	<label for="Rom-F">Women/Females/Femininity</label><br>
+	<span><input type="range" name="Rom-M" id="Rom-M" min="1" max="100" value="10" onchange="AdjustRomance();"></span>
+	<label for="Rom-M">Men/Males/Masculinity</label><br>
+	<span><input type="range" name="Rom-O" id="Rom-O" min="1" max="100" value="10" onchange="AdjustRomance();"></span>
+	<label for="Rom-O">Non-Binary</label>
+</fieldset>
+
+</form>
+
+<script type="text/javascript" src="./genderbread_files/sliders.js"></script>
+
+<p style='text-align: center; font-size: 80%'>original <a href="http://webaffair.net/genderbread">here</a></p>
+
+</body></html>
